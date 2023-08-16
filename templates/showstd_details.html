@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show_table</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse bg-light" >
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					Kent University</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li ><a href="#">Add Course</a></li>
+				<li><a href="{% url 'add_student' %}">Add Student</a></li>
+				<li class="active"><a href="">Show Student</a></li>
+				<li><a href="{% url 'showtchr' %}">Show Teachers</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<!-- <li><a href="">
+					<span class="glyphicon glyphicon-user"></span>
+					Register</a></li> -->
+				<li><a href="{% url 'logout1' %}">
+					<span class="glyphicon glyphicon-log-out"></span>
+					Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+    
+
+	<div class="container">
+		<h1 style="text-align:center;color:rgb(0, 0, 0);">
+			Student Details
+		</h1>
+		<form action=" " method="POST">
+            {% csrf_token %}
+		<table class="table table-dark table-stripped">
+			<thead>
+				<tr>
+					<th scope="col">Student Name</th>
+					<th scope="col">Address</th>
+					<th scope="col">Age</th>
+					<th scope="col"> Date</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Course Fee</th>
+                    <th scope="col" colspan="2" style="text-align: center;">Action</th>
+                    
+				</tr>
+			</thead>
+			<tbody>
+                {% for s in st %}
+				<tr>
+					
+					<td>{{s.stdname}}</td>
+					<td>{{s.Address}}</td>
+					<td>{{s.age}}</td>
+                    <td>{{s.date}}</td>
+                    <td>{{s.course.coursename}}</td>
+                    <td>{{s.course.coursefee}}</td>
+
+                    <td><button type="button" class="btn btn-primary"><a href="{% url 'edit' s.id %}" style="color: aliceblue; text-decoration: none;" >Edit</a></button></td>
+                    <td><button type="button" class="btn btn-danger"><a href="{% url 'delete' s.id %}" style="color: aliceblue; text-decoration: none;">Delete</a></button></td>
+
+				</tr>
+				{% endfor %}
+				
+			</tbody>
+		</table>
+	</div>
+</form>
+</body>
+</html>
+

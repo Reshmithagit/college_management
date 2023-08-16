@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Kent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% load static %}
+    <style>
+        body {
+            background-image: url('{% static "images/img5.png" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            margin-top: 50px;
+            text-align: center;
+            color: wheat;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .quote {
+            margin-top: 20px;
+            margin-left: 100px;
+            color: wheat;
+            font-size: 24px;
+            font-style: italic;
+            text-align: center;
+        }
+        .quote-author {
+            font-size: 18px;
+            font-style: normal;
+            color: #ffd700;
+        }
+        .signup-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .login-card {
+            margin-top: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+        .login-title {
+            color: #007bff;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form {
+            margin-top: 10px;
+        }
+        .login-button {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            University of Kent
+        </div>
+        <div class="quote">
+            "Learning never exhausts the mind"
+            <div class="quote-author">- Leonardo Da Vinci</div>
+        </div>
+        <div class="signup-button">
+            <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Sign Up</a>
+        </div>
+        <div class="login-card">
+            <div class="login-title">Login</div>
+            <form action="{% url 'adminlogin' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" name="uname" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="pswd" required>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary login-button">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
