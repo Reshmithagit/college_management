@@ -194,7 +194,9 @@ def edit_details1(request, pk):
         courseid = request.POST['sel']
         course=Addcourse.objects.get(id=courseid)
         teacher.course=course
-        teacher.img = request.FILES.get('img')     
+        if 'img' in request.FILES:
+           
+            teacher.img = request.FILES.get('img')     
         teacher.save()  
         user.save()
         messages.success(request, 'Details updated successfully.')
